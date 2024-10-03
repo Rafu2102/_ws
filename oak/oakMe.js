@@ -17,7 +17,7 @@ app.use((ctx) => {
             <li><a href="/name">我的名字</a></li>
             <li><a href="/age">我的年齡</a></li>
             <li><a href="/gender">我的性別</a></li>
-            <li><a href="https://youtu.be/dQw4w9WgXcQ?si=Cq22d6q3Z42gJvFn">最近蠻喜歡的歌</a></li>
+            <li><a href="https://www.youtube.com/watch?v=nyLe4og4An4&list=RDnyLe4og4An4&start_radio=1">最近蠻喜歡的歌</a></li>
           </ul>
         </body>
       </html>
