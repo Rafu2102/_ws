@@ -3,7 +3,7 @@
 ## 作業1：寫一個自我介紹的 oak 服務 
 
 用老師上課舉的例子當作架構，在使用ChatGpt進行美化和排版。
-*[Oak自我介紹](https://github.com/Rafu2102/_ws/blob/master/oak/oakMe.js)
+* [Oak自我介紹](https://github.com/Rafu2102/_ws/blob/master/oak/oakMe.js)
 
 ## 作業2：為 blog 程式加上貼文時間
 
