@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Google Gemini 聊天機器人 - 登入</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            body {
+                font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                background-color: #f4f4f9;
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+                color: #4a90e2;
+                margin-bottom: 1rem;
+            }
+            form {
+                width: 100%;
+                max-width: 400px; /* 限制表單最大寬度 */
+                background-color: #ffffff;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                padding: 2rem;
+                display: flex;
+                flex-direction: column; /* 垂直排列表單內元素 */
+            }
+            input {
+                height: 2.5rem; /* 統一輸入框高度 */
+                width: 100%; /* 確保輸入框寬度為表單寬度 */
+                border-radius: 5px; /* 圓角設計 */
+                border: 1px solid #ccc; /* 灰色邊框 */
+                padding: 0.5rem; /* 增加內部間距 */
+                margin-bottom: 1.5rem; /* 增加輸入框之間的間距 */
+            }
+            button {
+                height: 2.5rem; /* 統一按鈕高度 */
+                width: 100%; /* 確保按鈕寬度為表單寬度 */
+                border-radius: 5px; /* 圓角設計 */
+                border: none; /* 移除按鈕邊框 */
+                background-color: #4a90e2; /* 按鈕背景色 */
+                color: white; /* 按鈕文字顏色 */
+                cursor: pointer; /* 滑鼠懸停時顯示手型 */
+            }
+            button:hover {
+                background-color: #357abd; /* 滑鼠懸停時改變背景色 */
+            }
+            .link {
+                margin-top: 1rem; /* 增加與按鈕的間距 */
+                text-align: center; /* 將文字置中 */
+            }
+            .link a {
+                color: #4a90e2; /* 使用與按鈕相同的主題色 */
+                text-decoration: none; /* 移除底線 */
+            }
+            .link a:hover {
+                text-decoration: underline; /* 滑鼠懸停時顯示底線 */
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Google Gemini 聊天機器人</h1>
+
+        <!-- 登入表單 -->
+        <form id="loginForm">
+            <h2 style="text-align:center; margin-bottom:1.5rem;">登入</h2> <!-- 標題置中並增加間距 -->
+            
+            <!-- 用戶名輸入框 -->
+            <input type="text" id="loginUsername" placeholder="用戶名" required />
+            
+            <!-- 密碼輸入框 -->
+            <input type="password" id="loginPassword" placeholder="密碼" required />
+            
+            <!-- 登入按鈕 -->
+            <button type="button" onclick="login()">登入</button>
+
+            <!-- 註冊切換連結 -->
+            <div class="link">
+                還沒有帳號？<a href="#" onclick="showRegister()">註冊</a>
+            </div>
+        </form>
+
+        <!-- 註冊表單 -->
+        <form id="registerForm" style="display:none;">
+            <h2 style="text-align:center; margin-bottom:1.5rem;">註冊</h2> <!-- 標題置中並增加間距 -->
+            
+            <!-- 用戶名輸入框 -->
+            <input type="text" id="registerUsername" placeholder="用戶名" required />
+            
+            <!-- 密碼輸入框 -->
+            <input type="password" id="registerPassword" placeholder="密碼" required />
+            
+            <!-- 註冊按鈕 -->
+            <button type="button" onclick="register()">註冊</button>
+
+            <!-- 登入切換連結 -->
+            <div class="link">
+                已有帳號？<a href="#" onclick="showLogin()">登入</a>
+            </div>
+        </form>
+
+        <script>
+            // 模擬用戶資料庫
+            const users = {};
+
+            // 顯示登入表單
+            function showLogin() {
+                document.getElementById("registerForm").style.display = "none";
+                document.getElementById("loginForm").style.display = "block";
+                
+                // 修正輸入框和按鈕寬度問題，確保樣式一致
+                fixElementWidth();
+            }
+
+            // 顯示註冊表單
+            function showRegister() {
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("registerForm").style.display = "block";
+                
+                // 修正輸入框和按鈕寬度問題，確保樣式一致
+                fixElementWidth();
+            }
+
+            // 註冊功能
+            function register() {
+                const username = document.getElementById("registerUsername").value.trim();
+                const password = document.getElementById("registerPassword").value.trim();
+
+                if (!username || !password) {
+                    alert("請填寫完整資訊！");
+                    return; // 中止操作
+                }
+
+                if (users[username]) {
+                    alert("用戶名已被註冊！");
+                    return; // 中止操作
+                }
+
+                // 將用戶資料儲存到模擬資料庫中
+                users[username] = password;
+
+                alert("註冊成功！請使用您的帳號登入。");
+                
+                // 切換到登入表單
+                showLogin();
+            }
+
+            // 登入功能
+            function login() {
+                const username = document.getElementById("loginUsername").value.trim();
+                const password = document.getElementById("loginPassword").value.trim();
+
+                if (!username || !password) {
+                    alert("請填寫完整資訊！");
+                    return; // 中止操作
+                }
+
+                if (users[username] !== password) {
+                    alert("用戶名或密碼錯誤！");
+                    return; // 中止操作
+                }
+
+                alert("登入成功！即將進入聊天頁面。");
+
+                // 跳轉到聊天機器人頁面
+                window.location.href = "chat.html"; // 假設聊天頁面檔案名為 chat.html
+            }
+
+            // 修正輸入框和按鈕寬度問題，確保每次切換表單後樣式一致
+            function fixElementWidth() {
+              const inputsAndButtons = document.querySelectorAll("input, button");
+              inputsAndButtons.forEach(element => {
+                  element.style.width = "100%"; // 確保所有輸入框和按鈕寬度一致
+              });
+          }
+        </script>
+    </body>
+</html>
